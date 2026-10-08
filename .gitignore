@@ -1,0 +1,27 @@
+# Private research and runtime outputs
+local_runs/
+metadata/
+checkpoints/
+data/
+*.nii
+*.nii.gz
+*.npy
+*.npz
+*.mgz
+*.mif
+*.dcm
+*.pt
+*.pth
+*.ckpt
+*.bak
+*.release_backup
+**/*predictions.csv
+**/*within_pairs.csv
+**/*cross_pairs.csv
+**/*triplets.csv
+**/*subject_geometry.csv
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.env.*
