@@ -84,3 +84,47 @@ To aggregate *existing* per-fold probe CSV without training: `python scripts/20_
 ## Boundaries
 
 No raw MRI, personally identifiable paths, subject-level metadata, raw prediction tables, or checkpoint weights are included. The code uses `torch.load(..., weights_only=False)` for historical trusted checkpoint structures; **never load untrusted checkpoint files**. Data sharing rights are not asserted. Baseline superiority and external generalization claims are not made. See [Data availability](docs/DATA_AVAILABILITY.md).
+
+
+<!-- TEMPODINO_MAIN_RESULTS -->
+## Main Experimental Results
+
+**Dataset:** 23 macaques, 114 longitudinal T1 MRI scans.
+
+**Evaluation:** Subject-disjoint five-fold cross-validation.
+
+### 1. Brain Age Prediction
+
+![OOF brain-age prediction](figures/fig4_oof_brain_age_scatter.png)
+
+| Metric | TempoDINO | BrainIAC + Ridge |
+|---|---:|---:|
+| MAE (months) | **3.235** | 4.470 |
+| RMSE (months) | **4.272** | 5.573 |
+| Pearson r | **0.871** | 0.763 |
+
+### 2. Baseline Comparison
+
+![OOF model comparison](figures/fig5_oof_model_comparison.png)
+
+TempoDINO reduced MAE by 1.235 months compared with BrainIAC + Ridge.
+
+### 3. Longitudinal Developmental Ordering
+
+![Longitudinal ordering](figures/fig6_oof_longitudinal_ordering.png)
+
+- Age-prediction ordering: TempoDINO **88.50%**, BrainIAC + Ridge **78.32%** (226 pairs).
+- Independent developmental-score ordering: **95.80%** (226 pairs).
+- Adjacent-scan developmental-score ordering: **90.66%** (91 pairs).
+
+These are distinct evaluation endpoints.
+
+### 4. Exploratory Anatomical Validation
+
+![D99 anatomical validation](figures/fig7_d99_anatomical_validation.png)
+
+Developmental scores correlated with V1, A1 and CA2 volumes.
+However, adding the developmental score did not improve
+age-based volume prediction in these three regions.
+
+<!-- END_TEMPODINO_MAIN_RESULTS -->
